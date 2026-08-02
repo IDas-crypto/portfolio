@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ishita Das — Data Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12232a;
+    --ink-soft:#2c4048;
+    --paper:#eef2ef;
+    --paper-raise:#e2e9e4;
+    --teal:#1f6f78;
+    --teal-deep:#0f4247;
+    --amber:#b6862c;
+    --line:#c3ccc7;
+    --gray:#5b6b73;
+    --card:#f7f9f6;
+    --footer-bg:#0f4247;
+    --footer-text:#dfe9e6;
+    --footer-line:rgba(255,255,255,0.15);
+    --footer-muted:#8fada8;
+    --max:1080px;
+  }
+
+  body.dark{
+    --ink:#e9eeec;
+    --ink-soft:#b9c8c6;
+    --paper:#0e1a1d;
+    --paper-raise:#132226;
+    --teal:#4fa9af;
+    --teal-deep:#7fd1d6;
+    --amber:#e0b458;
+    --line:#28393d;
+    --gray:#8ba1a5;
+    --card:#132226;
+    --footer-bg:#081416;
+    --footer-text:#dbe6e4;
+    --footer-line:rgba(255,255,255,0.1);
+    --footer-muted:#5f7d80;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    transition:background .35s ease, color .35s ease;
+  }
+
+  a{color:inherit;}
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--teal);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:40;
+    background:rgba(238,242,239,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--max); margin:0 auto; padding:16px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .nav-mark{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; letter-spacing:0.14em;
+    color:var(--teal-deep); text-decoration:none;
+    display:flex; align-items:center; gap:8px;
+  }
+  .nav-mark .dot{width:7px; height:7px; border-radius:50%; background:var(--amber); display:inline-block;}
+  .nav-links{display:flex; gap:26px; list-style:none; margin:0; padding:0;}
+  .nav-links a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    text-decoration:none; color:var(--ink-soft);
+    padding-bottom:2px; border-bottom:1px solid transparent;
+    transition:border-color .2s, color .2s;
+  }
+  .nav-links a:hover{color:var(--teal-deep); border-color:var(--teal);}
+  .nav-toggle{display:none;}
+
+  .theme-toggle{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:34px; height:34px;
+    border-radius:50%;
+    border:1px solid var(--line);
+    background:var(--card);
+    color:var(--teal-deep);
+    cursor:pointer;
+    transition:border-color .2s, transform .2s, background .2s, color .2s;
+    flex:none;
+  }
+  .theme-toggle:hover{border-color:var(--teal); transform:translateY(-1px);}
+  .theme-toggle svg{width:16px; height:16px;}
+  .theme-toggle .icon-sun{display:none;}
+  body.dark .theme-toggle .icon-moon{display:none;}
+  body.dark .theme-toggle .icon-sun{display:block;}
+  .nav-right{display:flex; align-items:center; gap:22px;}
+
+  @media (max-width:720px){
+    .nav-links{display:none;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-inner{
+    max-width:var(--max); margin:0 auto; padding:96px 28px 76px;
+    position:relative; z-index:2;
+  }
+  .hero-eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--teal-deep); margin:0 0 20px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .hero-eyebrow::before{
+    content:""; width:24px; height:1px; background:var(--amber);
+  }
+  h1.hero-name{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(44px, 8vw, 84px);
+    line-height:0.98;
+    margin:0 0 14px;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  .hero-role{
+    font-family:'Fraunces', serif;
+    font-style:italic; font-weight:400;
+    font-size:clamp(18px, 2.4vw, 24px);
+    color:var(--teal-deep);
+    margin:0 0 30px;
+  }
+  .hero-desc{
+    max-width:560px;
+    font-size:16px; line-height:1.7; color:var(--ink-soft);
+    margin:0 0 36px;
+  }
+  .hero-contacts{
+    display:flex; flex-wrap:wrap; gap:10px;
+  }
+  .chip{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px; letter-spacing:0.02em;
+    color:var(--ink-soft);
+    background:var(--card);
+    border:1px solid var(--line);
+    padding:9px 14px;
+    border-radius:3px;
+    text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:border-color .2s, color .2s, transform .2s;
+  }
+  .chip:hover{border-color:var(--teal); color:var(--teal-deep); transform:translateY(-1px);}
+  .chip svg{width:13px; height:13px; flex:none;}
+
+  .contour-field{
+    position:absolute; inset:0; z-index:1;
+    opacity:0.55;
+  }
+  .contour-field svg{width:100%; height:100%; display:block;}
+  .contour-field path{
+    fill:none;
+    stroke:var(--teal);
+    stroke-width:1;
+  }
+  .contour-field path:nth-child(3n){stroke:var(--amber); opacity:0.5;}
+  .contour-field path:nth-child(4n){stroke:var(--ink-soft); opacity:0.35;}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:64px 0;}
+  section + section{border-top:1px solid var(--line);}
+  .sec-head{
+    display:flex; align-items:baseline; gap:16px;
+    margin-bottom:34px;
+  }
+  .sec-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--amber); letter-spacing:0.1em;
+  }
+  h2.sec-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(26px, 3.4vw, 34px);
+    margin:0;
+    color:var(--ink);
+  }
+  .sec-rule{flex:1; height:1px; background:var(--line); margin-left:6px;}
+
+  /* ---------- PROFILE ---------- */
+  .profile-text{
+    max-width:680px;
+    font-size:17px; line-height:1.85; color:var(--ink-soft);
+  }
+  .profile-text strong{color:var(--ink); font-weight:600;}
+
+  /* ---------- LEGEND / SKILLS ---------- */
+  .legend{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:8px 0;
+  }
+  .legend-row{
+    display:grid;
+    grid-template-columns:210px 1fr;
+    gap:20px;
+    padding:20px 26px;
+    align-items:start;
+  }
+  .legend-row + .legend-row{border-top:1px dashed var(--line);}
+  .legend-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--teal-deep);
+    display:flex; align-items:center; gap:10px;
+  }
+  .legend-symbol{
+    width:14px; height:14px; flex:none; border-radius:3px;
+    border:1.5px solid var(--teal-deep);
+  }
+  .legend-row:nth-child(2) .legend-symbol{border-radius:50%;}
+  .legend-row:nth-child(3) .legend-symbol{border-radius:0; transform:rotate(45deg);}
+  .legend-items{
+    display:flex; flex-wrap:wrap; gap:8px 10px;
+  }
+  .skill-tag{
+    font-size:13.5px; color:var(--ink-soft);
+    background:var(--paper);
+    border:1px solid var(--line);
+    padding:6px 11px;
+    border-radius:3px;
+  }
+
+  @media (max-width:640px){
+    .legend-row{grid-template-columns:1fr; gap:10px;}
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .field-notes{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:20px;
+  }
+  @media (max-width:900px){ .field-notes{grid-template-columns:1fr;} }
+
+  .note-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:26px 24px;
+    display:flex; flex-direction:column;
+    position:relative;
+  }
+  .note-card::before{
+    content:"";
+    position:absolute; top:0; left:24px; right:24px; height:3px;
+    background:linear-gradient(90deg, var(--teal), var(--amber));
+    border-radius:0 0 3px 3px;
+  }
+  .note-year{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--amber); margin:6px 0 10px;
+    letter-spacing:0.06em;
+  }
+  .note-title{
+    font-family:'Fraunces', serif;
+    font-weight:600; font-size:19px;
+    margin:0 0 6px; color:var(--ink);
+    line-height:1.3;
+  }
+  .note-tools{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px; color:var(--teal-deep);
+    margin:0 0 16px;
+  }
+  .note-list{
+    margin:0; padding-left:18px; flex:1;
+    font-size:14px; line-height:1.65; color:var(--ink-soft);
+  }
+  .note-list li{margin-bottom:9px;}
+  .note-list li:last-child{margin-bottom:0;}
+
+  /* ---------- TIMELINE (Education + Internship) ---------- */
+  .timeline{position:relative; padding-left:26px;}
+  .timeline::before{
+    content:""; position:absolute; left:5px; top:6px; bottom:6px;
+    width:1px; background:var(--line);
+  }
+  .tl-item{position:relative; padding-bottom:38px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:""; position:absolute; left:-26px; top:5px;
+    width:11px; height:11px; border-radius:50%;
+    background:var(--paper); border:2px solid var(--teal);
+  }
+  .tl-date{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--amber); letter-spacing:0.06em;
+    margin-bottom:6px;
+  }
+  .tl-org{
+    font-family:'Fraunces', serif; font-weight:600; font-size:19px;
+    color:var(--ink); margin:0 0 2px;
+  }
+  .tl-role{
+    font-style:italic; color:var(--teal-deep); font-size:14.5px; margin-bottom:12px;
+  }
+  .tl-list{margin:0; padding-left:18px; font-size:14px; line-height:1.65; color:var(--ink-soft);}
+  .tl-list li{margin-bottom:7px;}
+
+  /* ---------- CERTIFICATIONS ---------- */
+  .cert-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:12px;
+  }
+  @media (max-width:640px){ .cert-grid{grid-template-columns:1fr;} }
+  .cert-item{
+    display:flex; justify-content:space-between; gap:14px;
+    align-items:baseline;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:16px 18px;
+  }
+  .cert-name{font-size:14.5px; color:var(--ink); font-weight:500;}
+  .cert-date{font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--gray); white-space:nowrap;}
+
+  /* ---------- ACHIEVEMENTS / LANG ---------- */
+  .duo{display:grid; grid-template-columns:1.4fr 1fr; gap:24px;}
+  @media (max-width:720px){ .duo{grid-template-columns:1fr;} }
+  .duo-card{
+    background:var(--card); border:1px solid var(--line); border-radius:6px;
+    padding:22px 24px;
+  }
+  .duo-card h3{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--teal-deep); margin:0 0 12px;
+  }
+  .duo-card p{font-size:14.5px; line-height:1.7; color:var(--ink-soft); margin:0;}
+  .lang-row{display:flex; justify-content:space-between; padding:7px 0; font-size:14.5px; border-bottom:1px dashed var(--line);}
+  .lang-row:last-child{border-bottom:none;}
+  .lang-level{color:var(--gray); font-family:'IBM Plex Mono', monospace; font-size:12px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:56px 0 44px;
+    background:var(--footer-bg);
+    color:var(--footer-text);
+    transition:background .35s ease, color .35s ease;
+  }
+  .footer-inner{max-width:var(--max); margin:0 auto; padding:0 28px;}
+  .footer-top{
+    display:flex; flex-wrap:wrap; justify-content:space-between; gap:30px;
+    padding-bottom:32px; border-bottom:1px solid var(--footer-line);
+    margin-bottom:22px;
+  }
+  footer h2{
+    font-family:'Fraunces', serif; font-weight:600;
+    font-size:clamp(26px,4vw,38px); margin:0 0 10px; color:#fff;
+  }
+  footer .coords{
+    font-family:'IBM Plex Mono', monospace; font-size:12px;
+    color:var(--footer-muted); letter-spacing:0.05em;
+  }
+  .footer-links{display:flex; flex-direction:column; gap:10px; align-items:flex-start;}
+  .footer-links a{
+    font-family:'IBM Plex Mono', monospace; font-size:13px;
+    text-decoration:none; color:var(--footer-text);
+    border-bottom:1px solid var(--footer-line);
+    padding-bottom:2px;
+  }
+  .footer-links a:hover{border-color:var(--amber); color:var(--amber);}
+  .footer-bottom{
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--footer-muted);
+    display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px;
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-mark" href="#top"><span class="dot"></span>ISHITA&nbsp;DAS</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#profile">Profile</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#certifications">Certs</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="top" class="hero">
+  <div class="contour-field" aria-hidden="true">
+    <svg viewBox="0 0 1080 520" preserveAspectRatio="none">
+      <path d="M-20,80 C 150,40 300,120 460,70 S 780,20 1100,90" />
+      <path d="M-20,140 C 160,100 320,180 470,130 S 790,80 1100,150" />
+      <path d="M-20,200 C 170,160 330,240 480,190 S 800,140 1100,210" />
+      <path d="M-20,260 C 180,220 340,300 490,250 S 810,200 1100,270" />
+      <path d="M-20,320 C 190,280 350,360 500,310 S 820,260 1100,330" />
+      <path d="M-20,380 C 200,340 360,420 510,370 S 830,320 1100,390" />
+      <path d="M-20,440 C 210,400 370,480 520,430 S 840,380 1100,450" />
+      <path d="M-20,20 C 140,-10 290,60 450,10 S 770,-30 1100,30" />
+    </svg>
+  </div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Data Analytics &nbsp;·&nbsp; Geospatial Foundations</p>
+    <h1 class="hero-name">Ishita&nbsp;Das</h1>
+    <p class="hero-role">Turning raw datasets into terrain worth navigating.</p>
+    <p class="hero-desc">
+      MSc Geography graduate (2021) working across SQL, Python, Excel and Power BI —
+      applying the same discipline once used to read satellite imagery to reading
+      spreadsheets, dashboards and business questions.
+    </p>
+    <div class="hero-contacts">
+      <a class="chip" href="tel:+917003391703">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +91-7003391703
+      </a>
+      <a class="chip" href="mailto:dasishita10@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
+        dasishita10@gmail.com
+      </a>
+      <a class="chip" href="https://www.linkedin.com/in/ishita-das-094147208/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <span class="chip">West Bengal, India</span>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <section id="profile">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">01</span>
+        <h2 class="sec-title">Profile</h2>
+        <div class="sec-rule"></div>
+      </div>
+      <p class="profile-text">
+        Data-driven <strong>MSc Geography graduate</strong> with a strong analytical
+        foundation in SQL, Python, Excel and Power BI. Adept at interpreting complex
+        spatial patterns, cleaning datasets and leveraging Google Cloud AI infrastructure
+        to solve real-world problems. Confident working independently or within team
+        frameworks, using Google Workspace to deliver actionable insights — currently
+        seeking to add immediate value as a <strong>Data Analytics Apprentice</strong>.
+      </p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">02</span>
+        <h2 class="sec-title">Skills — Map Legend</h2>
+        <div class="sec-rule"></div>
+      </div>
+      <div class="legend">
+        <div class="legend-row">
+          <div class="legend-label"><span class="legend-symbol"></span>Languages &amp; Methods</div>
+          <div class="legend-items">
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Spatial Data Analysis</span>
+            <span class="skill-tag">Statistics</span>
+            <span class="skill-tag">Data Visualization</span>
+          </div>
+        </div>
+        <div class="legend-row">
+          <div class="legend-label"><span class="legend-symbol"></span>Data Tools</div>
+          <div class="legend-items">
+            <span class="skill-tag">Tableau</span>
+            <span class="skill-tag">Power BI</span>
+            <span class="skill-tag">Excel</span>
+            <span class="skill-tag">QGIS</span>
+            <span class="skill-tag">ArcGIS</span>
+          </div>
+        </div>
+        <div class="legend-row">
+          <div class="legend-label"><span class="legend-symbol"></span>Productivity Suite</div>
+          <div class="legend-items">
+            <span class="skill-tag">Sheets</span>
+            <span class="skill-tag">Docs</span>
+            <span class="skill-tag">Drive</span>
+            <span class="skill-tag">Slides</span>
+            <span class="skill-tag">Gmail</span>
+            <span class="skill-tag">PowerPoint</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">03</span>
+        <h2 class="sec-title">Data Projects</h2>
+        <div class="sec-rule"></div>
+      </div>
+      <div class="field-notes">
+
+        <div class="note-card">
+          <div class="note-year">2025</div>
+          <h3 class="note-title">Sales Database Analysis</h3>
+          <p class="note-tools">SQL · EXCEL</p>
+          <ul class="note-list">
+            <li>Extracted and queried retail data from a relational database to isolate high-value customer segments.</li>
+            <li>Cleaned messy datasets and used pivot tables and advanced formulas to identify seasonal profit trends.</li>
+            <li>Built an interactive dashboard translating findings into actionable insight for stakeholders.</li>
+          </ul>
+        </div>
+
+        <div class="note-card">
+          <div class="note-year">2022</div>
+          <h3 class="note-title">Vrinda Store Database Analysis</h3>
+          <p class="note-tools">EXCEL · POWER BI</p>
+          <ul class="note-list">
+            <li>Independently cleaned and structured an annual dataset of store transactions to address declining performance.</li>
+            <li>Built a comprehensive performance report resolving ambiguities in customer buying behaviour.</li>
+            <li>Delivered recommendations that shaped stock and marketing decisions.</li>
+          </ul>
+        </div>
+
+        <div class="note-card">
+          <div class="note-year">2021</div>
+          <h3 class="note-title">Survey Project — IIARI</h3>
+          <p class="note-tools">SHEETS · DOCS</p>
+          <ul class="note-list">
+            <li>Collaborated cross-functionally on a structured demographic and spatial data collection campaign.</li>
+            <li>Maintained project documentation in Google Workspace, ensuring 100% compliance with reporting guidelines.</li>
+            <li>Demonstrated communication, disciplined execution and team coordination throughout.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">04</span>
+        <h2 class="sec-title">Education &amp; Experience</h2>
+        <div class="sec-rule"></div>
+      </div>
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-date">2021</div>
+          <h3 class="tl-org">University of Calcutta — West Bengal, India</h3>
+          <p class="tl-role">Master of Science in Geography</p>
+          <ul class="tl-list">
+            <li>Relevant coursework: Advanced Remote Sensing (RS) &amp; GIS, Statistical Data Analysis, Quantitative Techniques, Python Foundations, Spreadsheet Modeling.</li>
+          </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">Aug 2021 – Dec 2021</div>
+          <h3 class="tl-org">Integrated Institute for Advanced Research and Information (IIARI) — Kolkata, India</h3>
+          <p class="tl-role">RS &amp; GIS Intern (Certificate Course Framework)</p>
+          <ul class="tl-list">
+            <li>Awarded an Internship Base Professional Certificate after completing an intensive 3-month course on Basic to Advanced GIS and Remote Sensing applications.</li>
+            <li>Analysed complex geospatial and satellite datasets to identify trends, maintaining structured documentation and strict reporting formats.</li>
+            <li>Worked with project leaders to solve real-world spatial data discrepancies and streamline map validation workflows using Google Workspace.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">05</span>
+        <h2 class="sec-title">Certifications</h2>
+        <div class="sec-rule"></div>
+      </div>
+      <div class="cert-grid">
+        <div class="cert-item"><span class="cert-name">Google Cloud — Gen AI Academy APAC, Cohort 1</span><span class="cert-date">APR 2026</span></div>
+        <div class="cert-item"><span class="cert-name">Deloitte — Data Analytics Forensic Technology Simulation</span><span class="cert-date">FEB 2026</span></div>
+        <div class="cert-item"><span class="cert-name">Goldman Sachs — Excel Skills for Business</span><span class="cert-date">FEB 2025</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="achievements">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">06</span>
+        <h2 class="sec-title">Achievements &amp; Languages</h2>
+        <div class="sec-rule"></div>
+      </div>
+      <div class="duo">
+        <div class="duo-card">
+          <h3>Achievement</h3>
+          <p>Awarded a Certificate of Appreciation for outstanding contribution, commitment and execution during the IIARI Survey Project.</p>
+        </div>
+        <div class="duo-card">
+          <h3>Languages</h3>
+          <div class="lang-row"><span>English</span><span class="lang-level">FLUENT</span></div>
+          <div class="lang-row"><span>Hindi</span><span class="lang-level">PROFICIENT</span></div>
+          <div class="lang-row"><span>Bengali</span><span class="lang-level">NATIVE</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <h2>Let's work together.</h2>
+        <p class="coords">22.9868° N, 87.8550° E — West Bengal, India</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:dasishita10@gmail.com">dasishita10@gmail.com</a>
+        <a href="tel:+917003391703">+91-7003391703</a>
+        <a href="https://www.linkedin.com/in/ishita-das-094147208/" target="_blank" rel="noopener">linkedin.com/in/ishita-das-094147208</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>ISHITA DAS — DATA ANALYST</span>
+      <span>PORTFOLIO / 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var body = document.body;
+    var toggle = document.getElementById('themeToggle');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if(prefersDark){ body.classList.add('dark'); }
+    toggle.addEventListener('click', function(){
+      body.classList.toggle('dark');
+    });
+  })();
+</script>
+</body>
+</html>
